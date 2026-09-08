@@ -145,7 +145,7 @@ const JSON parse_JSON_from_buffer(const char *JSONdata, int JSONdatalen, bool ma
 		rawJSONbuffer[JSONdatalen] = (char)0;
 		rawJSONbuffer[JSONdatalen + 1] = (char)0;
 
-		// Ssetup the lexical analyzer to read from the in-memory copy
+		// Setup the lexical analyzer to read from the in-memory copy
 		// of JSON without copying it
 
 		if (parseJSON_scan_buffer((char *)JSONdata, (JSONdatalen + 2)) == (YY_BUFFER_STATE)0)
