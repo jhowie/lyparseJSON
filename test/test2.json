@@ -1,0 +1,16 @@
+{
+        "string" : "string value" ,
+        "number - integer" : 12345 ,
+        "number - float" : 123.45 ,
+        "number - double" : 12.34e5 ,
+        "number - integer negative" : -12345 ,
+        "number - float negative" : -123.45 ,
+        "number - double negative" : -12.34e5 ,
+        "boolean true" : true ,
+        "boolean false" : false ,
+        "null value" : null ,
+        "object" : {
+                "subobject" : "subobject"
+        } ,
+        "array" : [ 1, "two", 3, "four", 5]
+}

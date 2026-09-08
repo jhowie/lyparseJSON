@@ -1,0 +1,12 @@
+[
+	"abcdefghihklmnopqrstuvwxyz",
+	"This is a string with a \"quote\" in it",
+	"This string has a reverse solidus -> \\ <- here",
+	"This string has a forward solidus -> \/ <- here",
+	"This string has a bb\backspace (only one 'b')",
+	"This string has a formfeed -> \f <- here",
+	"This string has a linefeed -> \n <- here",
+	"This string has a carriage return -> \r <- here",
+	"This string has a horizontal tab -> \t <- here",
+	"This string has Unicode -> \uABCD <- here"
+]
