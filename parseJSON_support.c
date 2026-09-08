@@ -2151,7 +2151,7 @@ const JSON get_membervalue_in_JSON_object(const JSON parsedJSON, const unsigned 
 
 	// We need to encode the member name
 
-	if ((encodedmembername = encodeJSONstring (membername)) == (char *) 0) {
+	if ((encodedmembername = encodeJSONstring (membername, true)) == (char *) 0) {
 		// An error occurred, and we could not encode the member name
 
 		return (JSON) 0;
@@ -2489,13 +2489,16 @@ JSON create_JSON_object (void)
 	return (JSON) newobject;
 }
 
-/* static char *encodeJSONstring (const unsigned char *string)
+/* static char *encodeJSONstring (const unsigned char *string, bool convertunicode)
 **
 ** This function is used to encode JSON strings, used in the JSON string value
-** and in member names in objects
+** and in member names in objects. The parameter convertunicode, if set to true,
+** will convert non-ASCII Unicode characters to the format "\uXXXX", where X is a
+** hexadecimal character. This supports conversion only UTF-8 characters in the
+** space 0x0000 - 0xFFFF
 */
 
-static char *encodeJSONstring (const unsigned char *string)
+static char *encodeJSONstring (const unsigned char *string, bool convertunicode)
 {
 	int	stringlength, i = 0, o = 0, mb1, mb2, mb3, mb4;
 	long	utf8charout;
@@ -2668,7 +2671,7 @@ static char *encodeJSONstring (const unsigned char *string)
 			// Check if we need to encode this character with the
 			// '\u' escape
 
-			if (string [i] > 0x7F) {
+			if ((string [i] > 0x7F) && convertunicode) {
 				// We treat this character and the one
 				// following it as 'Basic Multilingual Plane'
 				// (U+0000 - U+FFFF). We follow the rules found
@@ -2677,7 +2680,17 @@ static char *encodeJSONstring (const unsigned char *string)
 				// extra space we need by looking at the top
 				// three bits
 
-				if ((string [i] & 0xE0) == 0xE0) {
+				if ((string [i] & 0xF0) == 0xF0) {
+					// We have UTF-8 above 0xFFFF, which we
+					// do not handle right now. Just return
+					// with an error
+
+					free (encodedstring);
+					jsonerror = JSON_INVALIDSTRING;
+					setlastJSONerrorstring ("Invalid UTF-8 character above 0xFFFF found");
+					return (char *) 0;
+				}
+				else if ((string [i] & 0xE0) == 0xE0) {
 					// This is a three octet Basic
 					// Multilingual Plane character. We
 					// check that the octets are well-
@@ -2755,12 +2768,11 @@ static char *encodeJSONstring (const unsigned char *string)
 					i += 2;
 				}
 				else {
-					// We cannot encode UTF-8 characters
-					// above 0xFFFF
+					// We have an unknown UTF-8 character
 
 					free (encodedstring);
 					jsonerror = JSON_INVALIDSTRING;
-					setlastJSONerrorstring ("UTF-8 character above 0xFFFF found");
+					setlastJSONerrorstring ("Invalid UTF-8 character found");
 					return (char *) 0;
 				}
 
@@ -2971,14 +2983,16 @@ static unsigned char *decodeJSONstring (const char *string)
 	return decodedstring;
 }
 
-/* JSON create_JSON_string (const char *string)
+/* JSON create_JSON_string (const char *string, bool convertunicode)
 **
 ** Create a new JSON string from the string passed to the function. Control
 ** characters such as form feed, newline, etc. are escaped, as are others as
-** required by the JSON standard. We do not convert multibyte characters
+** required by the JSON standard. If the second argument convertunicode is set
+** to true, non-ASCII Unicode characters are converted to \uXXXX, where X is a
+** hexadecimal character
 */
 
-JSON create_JSON_string (const unsigned char *string)
+JSON create_JSON_string (const unsigned char *string, bool convertunicode)
 {
 	struct jsonvalue	*newstring;
 
@@ -2996,7 +3010,7 @@ JSON create_JSON_string (const unsigned char *string)
 		setlastJSONerrorstring ("Unable to create JSON string");
 		return (JSON) 0;
 	}
-	if ((newstring ->v.string = encodeJSONstring (string)) == (char *) 0) {
+	if ((newstring ->v.string = encodeJSONstring (string, convertunicode)) == (char *) 0) {
 		// An error occurred - just return NULL JSON
 
 		return (JSON) 0;
@@ -3315,14 +3329,14 @@ JSON add_element_to_JSON_array (JSON array, JSON value)
 	return array;
 }
 
-/* JSON add_member_to_JSON_object (JSON object, const char *name, JSON value)
+/* JSON add_member_to_JSON_object (JSON object, const char *name, bool convertunicode, JSON value)
 **
 ** We need to add a member to an object. The member is identified by the name
 ** and there is no check that the name is not already present in the object. We
 ** always add members after any existing members in the object
 */
 
-JSON add_member_to_JSON_object (JSON object, const unsigned char *name, JSON value)
+JSON add_member_to_JSON_object (JSON object, const unsigned char *name, bool convertunicode, JSON value)
 {
 	struct jsonvalue	*currentvalue = (struct jsonvalue *) object;
 	struct jsonobjectmember	*objectmember, *newobjectmember;
@@ -3363,7 +3377,7 @@ JSON add_member_to_JSON_object (JSON object, const unsigned char *name, JSON val
 		return (JSON) 0;
 	}
 	memset (newobjectmember, 0, sizeof (struct jsonobjectmember));
-	if ((newobjectmember ->name = encodeJSONstring (name)) == (char *) 0) {
+	if ((newobjectmember ->name = encodeJSONstring (name, convertunicode)) == (char *) 0) {
 		// An error occurred, so clean up and return
 
 		free (newobjectmember);

@@ -143,7 +143,7 @@ int main (void)
                         return 1;
                 }
 
-                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_id", number) == (JSON) 0) {
+                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_id", true, number) == (JSON) 0) {
                         // An error occurred, and we could not add the customer
                         // number to the object
 
@@ -155,7 +155,7 @@ int main (void)
 
                 // Now, create and add the customer name
 
-                if ((string = create_JSON_string ((unsigned char *) customer [i].name)) == (JSON) 0) {
+                if ((string = create_JSON_string ((unsigned char *) customer [i].name, true)) == (JSON) 0) {
                         // An error occurred, and we could create the customer
                         // name
 
@@ -165,7 +165,7 @@ int main (void)
                         return 1;
                 }
 
-                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_name", string) == (JSON) 0) {
+                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_name", true, string) == (JSON) 0) {
                         // An error occurred, and we could not add the customer
                         // name to the object
 
@@ -177,7 +177,7 @@ int main (void)
 
                 // Now, create and add address line 1
 
-                if ((string = create_JSON_string ((unsigned char *) customer [i].addressline1)) == (JSON) 0) {
+                if ((string = create_JSON_string ((unsigned char *) customer [i].addressline1, true)) == (JSON) 0) {
                         // An error occurred, and we could create the customer
                         // address line 1
 
@@ -187,7 +187,7 @@ int main (void)
                         return 1;
                 }
 
-                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_addr_1", string) == (JSON) 0) {
+                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_addr_1", true, string) == (JSON) 0) {
                         // An error occurred, and we could not add the customer
                         // address line 1 to the object
 
@@ -199,7 +199,7 @@ int main (void)
 
                 // Now, create and add address line 2
 
-                if ((string = create_JSON_string ((unsigned char *) customer [i].addressline2)) == (JSON) 0) {
+                if ((string = create_JSON_string ((unsigned char *) customer [i].addressline2, true)) == (JSON) 0) {
                         // An error occurred, and we could create the customer
                         // address line 2
 
@@ -209,7 +209,7 @@ int main (void)
                         return 1;
                 }
 
-                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_addr_2", string) == (JSON) 0) {
+                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_addr_2", true, string) == (JSON) 0) {
                         // An error occurred, and we could not add the customer
                         // address line 2 to the object
 
@@ -221,7 +221,7 @@ int main (void)
 
                 // Now, create and add address town
 
-                if ((string = create_JSON_string ((unsigned char *) customer [i].addresstown)) == (JSON) 0) {
+                if ((string = create_JSON_string ((unsigned char *) customer [i].addresstown, true)) == (JSON) 0) {
                         // An error occurred, and we could create the customer
                         // town
 
@@ -231,7 +231,7 @@ int main (void)
                         return 1;
                 }
 
-                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_addr_town", string) == (JSON) 0) {
+                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_addr_town", true, string) == (JSON) 0) {
                         // An error occurred, and we could not add the customer
                         // town to the object
 
@@ -243,7 +243,7 @@ int main (void)
 
                 // Now, create and add address state or province
 
-                if ((string = create_JSON_string ((unsigned char *) customer [i].addressstateorprovince)) == (JSON) 0) {
+                if ((string = create_JSON_string ((unsigned char *) customer [i].addressstateorprovince, true)) == (JSON) 0) {
                         // An error occurred, and we could create the customer
                         // state or province
 
@@ -253,7 +253,7 @@ int main (void)
                         return 1;
                 }
 
-                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_addr_st_or_pr", string) == (JSON) 0) {
+                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_addr_st_or_pr", true, string) == (JSON) 0) {
                         // An error occurred, and we could not add the customer
                         // town to the object
 
@@ -265,7 +265,7 @@ int main (void)
 
                 // Now, create and add address ZIP or postal code
 
-                if ((string = create_JSON_string ((unsigned char *) customer [i].addressziporpostal)) == (JSON) 0) {
+                if ((string = create_JSON_string ((unsigned char *) customer [i].addressziporpostal, true)) == (JSON) 0) {
                         // An error occurred, and we could create the customer
                         // ZIP or postal code
 
@@ -275,7 +275,7 @@ int main (void)
                         return 1;
                 }
 
-                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_addr_ZIPPostal", string) == (JSON) 0) {
+                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_addr_ZIPPostal", true, string) == (JSON) 0) {
                         // An error occurred, and we could not add the customer
                         // ZIP or postal code to the object
 
@@ -287,7 +287,7 @@ int main (void)
 
                 // Next, create and add customer level
 
-                if ((string = create_JSON_string ((unsigned char *) customer [i].level)) == (JSON) 0) {
+                if ((string = create_JSON_string ((unsigned char *) customer [i].level, true)) == (JSON) 0) {
                         // An error occurred, and we could create the customer
                         // level
 
@@ -297,7 +297,7 @@ int main (void)
                         return 1;
                 }
 
-                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_level", string) == (JSON) 0) {
+                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_level", true, string) == (JSON) 0) {
                         // An error occurred, and we could not add the customer
                         // level to the object
 
@@ -326,7 +326,7 @@ int main (void)
                         // The phone number is not empty, so we need to create
                         // a string value for it
 
-                        if ((string = create_JSON_string ((unsigned char *) customer [i].phones.home)) == (JSON) 0) {
+                        if ((string = create_JSON_string ((unsigned char *) customer [i].phones.home, true)) == (JSON) 0) {
                                 // An error occurred, and we could create the
                                 // customer home phone number
 
@@ -337,7 +337,7 @@ int main (void)
                                 return 1;
                         }
 
-                        if (add_member_to_JSON_object (phoneobject, (unsigned char *) "home", string) == (JSON) 0) {
+                        if (add_member_to_JSON_object (phoneobject, (unsigned char *) "home", true, string) == (JSON) 0) {
                                 // An error occurred, and we could not add the
                                 // customer home phone number to the object
 
@@ -356,7 +356,7 @@ int main (void)
                         // The phone number is not empty, so we need to create
                         // a string value for it
 
-                        if ((string = create_JSON_string ((unsigned char *) customer [i].phones.mobile)) == (JSON) 0) {
+                        if ((string = create_JSON_string ((unsigned char *) customer [i].phones.mobile, true)) == (JSON) 0) {
                                 // An error occurred, and we could create the
                                 // customer mobile phone numner
 
@@ -367,7 +367,7 @@ int main (void)
                                 return 1;
                         }
 
-                        if (add_member_to_JSON_object (phoneobject, (unsigned char *) "mobile", string) == (JSON) 0) {
+                        if (add_member_to_JSON_object (phoneobject, (unsigned char *) "mobile", true, string) == (JSON) 0) {
                                 // An error occurred, and we could not add the
                                 // customer mobile phone number to the object
 
@@ -381,7 +381,7 @@ int main (void)
 
                 // Add the phone object to the customer object
 
-                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_phones", phoneobject) == (JSON) 0) {
+                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_phones", true, phoneobject) == (JSON) 0) {
                         // An error occurred, and we could not add the phone
                         // object to the customer object
 
@@ -405,7 +405,7 @@ int main (void)
                         return 1;
                 }
 
-                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_rewards", number) == (JSON) 0) {
+                if (add_member_to_JSON_object (customerobject, (unsigned char *) "cust_rewards", true, number) == (JSON) 0) {
                         // An error occurred, and we could not add the customer
                         // rewards balance to the object
 

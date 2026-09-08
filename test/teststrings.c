@@ -34,11 +34,49 @@ int main (int argc, char *argv [])
                 { "This is a latinae: ", { 0xE1, 0xB4, 0x81, 0x00 } }
         };
         int             i;  
+        bool            convertunicode;
         JSON            parsedJSON, element, array;
         unsigned char   *stringout, stringin [128 +1];
         const char      *JSONout;
         int             numbyteswritten;
 
+        // Check if we got an argument
+
+        switch (argc) {
+        case 1:
+                // We got no arguments, so assume we need to convert Unicode
+
+                convertunicode = true;
+                break;
+
+        case 2:
+                // We got an argument, check if it is true or false
+
+                if (! strcasecmp (argv [1], "true")) {
+                        // We need to convert Unicode characters
+
+                        convertunicode = true;
+                }
+                else if (! strcasecmp (argv [1], "false")) {
+                        // We are not to convert Unicode characters
+
+                        convertunicode = false;
+                }
+                else {
+                        // We got an error...
+
+                        fprintf (stderr, "Usage: %s [true | false]\n", argv [0]);
+                        return 1;
+                }
+                break;
+
+        default:
+                // We got an error...
+
+                fprintf (stderr, "Usage: %s [true | false]\n", argv [0]);
+                return 1;
+                break;
+        }
 
         // Set the JSON debug to false
 
@@ -106,7 +144,7 @@ int main (int argc, char *argv [])
 
                 printf ("Adding to the array - %s\n", stringin);
 
-                if ((element = create_JSON_string (stringin)) == (JSON) 0) {
+                if ((element = create_JSON_string (stringin, convertunicode)) == (JSON) 0) {
                         // An error occurred, and we could not create the string
 
                         fprintf (stderr, "Unable to create JSON string to add to array (%d - %s)\n", get_last_JSON_error (), get_last_JSON_error_string ());

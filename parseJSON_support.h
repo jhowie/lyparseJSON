@@ -146,7 +146,7 @@ static bool             parseJSONarrayorobjectend (void);
 static bool             addnewstate (struct jsonvalue *arrayorobject);
 static JSON             getnextelementormember (struct jsonvalue *arrayorobject);
 static bool             deletestate (struct jsonvalue *arrayorobject);
-static char             *encodeJSONstring (const unsigned char *string);
+static char             *encodeJSONstring (const unsigned char *string, bool convertunicode);
 static unsigned char    *decodeJSONstring (const char *string);
 static void             setlastJSONerrorstring (char *string);
 

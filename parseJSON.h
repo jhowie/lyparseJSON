@@ -133,14 +133,14 @@ bool                    get_JSON_boolean (const JSON parsedJSONboolean);
 
 JSON    create_JSON_array (void);
 JSON    create_JSON_object (void);
-JSON    create_JSON_string (const unsigned char *string);
+JSON    create_JSON_string (const unsigned char *string, bool convertunicode);
 JSON    create_JSON_number (const char *number);
 JSON    create_JSON_number_long (long number);
 JSON    create_JSON_number_double (double number);
 JSON    create_JSON_boolean (bool trueorfalse);
 JSON    create_JSON_null (void);
 JSON    add_element_to_JSON_array (JSON array, JSON value);
-JSON    add_member_to_JSON_object (JSON object, const unsigned char *name, JSON value);
+JSON    add_member_to_JSON_object (JSON object, const unsigned char *name, bool convertunicode, JSON value);
 
 /*
 ** The following are general error functions
