@@ -20,3 +20,8 @@ The following limitations should be kept in mind:
   2) The library is NOT thread safe (only one thread can be parsing JSON at a time).
 
 These limitations will be addressed (eventually).
+
+**LICENSE**
+
+The code is published under the BSD-3 Clause License except for the code generated
+by lex (flex) and yacc (bison). These are published under the GNU license. 
