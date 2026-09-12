@@ -113,7 +113,7 @@ const JSON      get_next_element_in_JSON_array (const JSON parsedJSONarray);
 
 const unsigned char      *get_first_membername_in_JSON_object (const JSON parsedJSONobject);
 const unsigned char      *get_next_membername_in_JSON_object (const JSON parsedJSONobject);
-const JSON              get_membervalue_in_JSON_object (const JSON parsedJSONobject, const unsigned char *membername);
+const JSON              get_membervalue_in_JSON_object (const JSON parsedJSONobject, const unsigned char *membername, bool convertunicode);
 
 /*
 ** The following return a value in its native format. Note that there is no

@@ -2110,14 +2110,14 @@ const unsigned char *get_next_membername_in_JSON_object(const JSON parsedJSONobj
 	return decodeJSONstring (nextmember->name);
 }
 
-/* const JSON get_membervalue_in_JSON_object (const JSON parsedJSON, const unsigned char *membername)
+/* const JSON get_membervalue_in_JSON_object (const JSON parsedJSON, const unsigned char *membername, bool convertunicode)
 **
 ** This function is called to get the member value in a JSON object identified
 ** by its name. This assumes that every member in an object has a unique name,
 ** as only the first value with a matching name is found
 */
 
-const JSON get_membervalue_in_JSON_object(const JSON parsedJSON, const unsigned char *membername)
+const JSON get_membervalue_in_JSON_object(const JSON parsedJSON, const unsigned char *membername, bool convertunicode)
 {
 	char			*encodedmembername;
 	struct jsonvalue	*currentvalue = (struct jsonvalue *) parsedJSON;
@@ -2151,7 +2151,7 @@ const JSON get_membervalue_in_JSON_object(const JSON parsedJSON, const unsigned 
 
 	// We need to encode the member name
 
-	if ((encodedmembername = encodeJSONstring (membername, true)) == (char *) 0) {
+	if ((encodedmembername = encodeJSONstring (membername, convertunicode)) == (char *) 0) {
 		// An error occurred, and we could not encode the member name
 
 		return (JSON) 0;
@@ -2164,7 +2164,7 @@ const JSON get_membervalue_in_JSON_object(const JSON parsedJSON, const unsigned 
 	{
 		// Check if the member name is the same as the name requested
 
-		if (!strcmp(currentmember->name, encodedmembername))
+		if (! strcmp(currentmember->name, encodedmembername))
 		{
 			// We found a matching name, just return the value
 
@@ -3377,6 +3377,9 @@ JSON add_member_to_JSON_object (JSON object, const unsigned char *name, bool con
 		return (JSON) 0;
 	}
 	memset (newobjectmember, 0, sizeof (struct jsonobjectmember));
+
+	// Set the name of the object member 
+
 	if ((newobjectmember ->name = encodeJSONstring (name, convertunicode)) == (char *) 0) {
 		// An error occurred, so clean up and return
 
