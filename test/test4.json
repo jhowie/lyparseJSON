@@ -1,0 +1,25 @@
+[
+  {
+    "id": "R3VMVBEJ4D0T1ID9D3KPK5UN20NKH6II",
+    "path": "/Volumes/Macintosh HD 2/Virtual Machines/freebsd1.vmwarevm/freebsd1.vmx"
+  },
+  {
+    "id": "C39BVQ4REDAVVLTVU7TGLKRRH2N3EAIV",
+    "path": "/Volumes/Macintosh HD 2/Virtual Machines/imac-macos-highsierra1.vmwarevm/imac-macos-highsierra1.vmx"
+  },
+  {
+    "id": "MO7NRN0JUR0QRCPD1D0RP52NJP020COG",
+    "path": "/Volumes/Macintosh HD 2/Virtual Machines/imac-macos-highsierra2-adjoined.vmwarevm/imac-macos-highsierra2-adjoined.vmx"
+  },
+  {
+    "id": "P3REVAV1L2BAD2C3PG32MTGES46J99RI",
+    "path": "/Volumes/Macintosh HD 2/Virtual Machines/imac-sles1.vmwarevm/imac-sles1.vmx"
+  }, {
+    "id": "EMV2IULE7I7NPCUK9NV2IO5BDIKDI2L9",
+    "path": "/Volumes/Macintosh HD 2/Virtual Machines/imac-windows1.vmwarevm/imac-windows1.vmx"
+  },
+  {
+    "id": "OIPCJNNMKPB8JMNQP98795FF8JQQ0R4V",
+    "path": "/Volumes/Macintosh HD 2/Virtual Machines/imac-winserv1.vmwarevm/imac-winserv1.vmx"
+  }
+]

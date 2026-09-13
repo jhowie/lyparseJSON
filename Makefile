@@ -2,7 +2,7 @@
 #
 ARCHITECTURE = $(shell uname -m)
 CC=cc
-CFLAGS=-g
+CFLAGS=
 LEX=flex
 YACC=bison
 YACCFLAGS=-d -p parseJSON
