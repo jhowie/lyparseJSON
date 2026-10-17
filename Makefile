@@ -20,7 +20,7 @@ INSTALLINCLUDEDIR=/usr/local/include
 $(OBJDIR)/%.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $(OBJDIR)/$(<:.c=.o)
 
-$(LIBDIR)/lyparseJSON.a: $(LIBOBJS) $(LIBDIR)
+$(LIBDIR)/liblyparseJSON.a: $(LIBOBJS) $(LIBDIR)
 	ar -r $(LIBDIR)/liblyparseJSON.a $(LIBOBJS)
 	ranlib $(LIBDIR)/liblyparseJSON.a
 
