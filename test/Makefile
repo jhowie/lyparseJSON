@@ -2,7 +2,7 @@
 #
 ARCHITECTURE = $(shell uname -m)
 CC=cc
-CFLAGS=-g -I..
+CFLAGS=-I..
 OBJDIR=../obj/$(ARCHITECTURE)/test
 LIBDIR=../lib/$(ARCHITECTURE)
 TESTOBJS=$(addprefix $(OBJDIR)/,testfile.o testmem.o testmem2.o, testcreate.o teststrings.o)
