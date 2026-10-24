@@ -12,6 +12,7 @@ LIBDIR=lib/$(ARCHITECTURE)
 LIBOBJS=$(addprefix $(OBJDIR)/,parseJSON.tab.o parseJSON.lex.o parseJSON_support.o)
 INSTALLLIBDIR=/usr/local/lib
 INSTALLINCLUDEDIR=/usr/local/include
+INSTALLMANDIR=/usr/local/man/man3
 #
 
 %.c: %.y
@@ -32,6 +33,8 @@ install: $(LIBDIR)/liblyparseJSON.a parseJSON.h
 	install -c -o root -g wheel -m 0444 $(LIBDIR)/liblyparseJSON.a $(INSTALLLIBDIR)
 	install -d -o root -g wheel $(INSTALLINCLUDEDIR)
 	install -c -o root -g wheel -m 0444 parseJSON.h $(INSTALLINCLUDEDIR)
+	install -d -o root -g wheel $(INSTALLMANDIR)
+	install -c -o root -g wheel -m 0444 lyparseJSON.3 $(INSTALLMANDIR)
 
 parseJSON.tab.c: parseJSON.y parseJSON.h parseJSON_support.h 
 	$(YACC) $(YACCFLAGS) parseJSON.y

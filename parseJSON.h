@@ -111,8 +111,8 @@ const JSON      get_next_element_in_JSON_array (const JSON parsedJSONarray);
 ** The following is used to iterate over Name-Value (NV) pairs in an object
 */
 
-const unsigned char      *get_first_membername_in_JSON_object (const JSON parsedJSONobject);
-const unsigned char      *get_next_membername_in_JSON_object (const JSON parsedJSONobject);
+const unsigned char     *get_first_membername_in_JSON_object (const JSON parsedJSONobject);
+const unsigned char     *get_next_membername_in_JSON_object (const JSON parsedJSONobject);
 const JSON              get_membervalue_in_JSON_object (const JSON parsedJSONobject, const unsigned char *membername, bool convertunicode);
 
 /*
@@ -147,7 +147,7 @@ JSON    add_member_to_JSON_object (JSON object, const unsigned char *name, bool 
 */
 
 JSONERROR       get_last_JSON_error (void);
-const char      *get_last_JSON_error_string ();
+const char      *get_last_JSON_error_string (void);
 
 /*
 ** The following function is used to control debugging
@@ -159,15 +159,15 @@ void set_parse_JSON_debug (bool debug);
 ** The following are error types
 */
 
-# define JSON_OK                        0 // No error!
+# define JSON_OK                        0 // No error
 # define JSON_NOJSON                    1 // No JSON to work with (soft error)
 # define JSON_BADJSON                   2 // Syntax error in JSON being parsed
 # define JSON_NOTANARRAY                3 // Value is not an array
 # define JSON_NOTANOBJECT               4 // Value if not an object
 # define JSON_NOTANOBJECTMEMBER         5 // Object member not found
-# define JSON_INCORRECTVALUETYPE        6 // We were expecting a different type
+# define JSON_INCORRECTVALUETYPE        6 // Expecting a different type
 # define JSON_INVALIDSTRING             7 // The string was not valid
-# define JSON_INTERNALERROR             8 // We probably messed up memory
+# define JSON_INTERNALERROR             8 // Probable memory corruption
 # define JSON_GENERALERROR              9 // Error in C LIbrary (e.g. malloc)
 
 # endif // __PARSEJSON_H__
